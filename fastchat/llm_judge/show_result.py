@@ -89,7 +89,13 @@ def display_result_pairwise(args):
     )
     # print(df.sort_values(by="win_rate", ascending=False))
     # print(df.sort_values(by="loss_rate", ascending=True))
-    print(df.sort_values(by="win_rate_adjusted", ascending=False))
+    print(df.sort_values(by="win_rate_adjusted", ascending=False).to_markdown())
+    # plot winrate and save to file
+    x = df.sort_values(by="win_rate_adjusted", ascending=False).plot.bar(y="win_rate_adjusted", title="Win Rate", figsize=(10, 5), rot=0)
+    x.get_figure().savefig(f"win_rate_{args.judge_model}.png")
+    
+    
+    
 
 
 if __name__ == "__main__":
