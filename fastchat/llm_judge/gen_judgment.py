@@ -2,6 +2,7 @@
 Usage:
 python gen_judgment.py --model-list [LIST-OF-MODEL-ID] --parallel [num-concurrent-api-call] --mode [single|pairwise-baseline|pairwise-all]
 """
+
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import json
@@ -301,8 +302,7 @@ if __name__ == "__main__":
     # Show match stats and prompt enter to continue
     print("Stats:")
     print(json.dumps(match_stat, indent=4))
-    input("Press Enter to confirm...")
-
+    print("Evaluating the following models.")
     # Play matches
     if args.parallel == 1:
         for match in tqdm(matches):
