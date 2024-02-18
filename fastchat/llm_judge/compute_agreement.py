@@ -5,6 +5,7 @@ Usage:
 python compute_agreement.py --judges gpt4-pair human --votefiles human_judgments.json gpt4_pair_judgments.json
 python compute_agreement.py --judges human human --votefiles human_judgments.json
 """
+
 import argparse
 import json
 import os
@@ -13,7 +14,11 @@ import numpy as np
 
 
 def get_judge_name(judge):
-    if isinstance(judge, list) and judge[0] == "gpt-4" and judge[1].startswith("pair"):
+    if (
+        isinstance(judge, list)
+        and judge[0].startswith("gpt-4")
+        and judge[1].startswith("pair")
+    ):
         return "gpt4-pair"
     if judge.startswith("expert"):
         return "human"
